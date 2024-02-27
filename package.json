@@ -9,6 +9,11 @@
     "registry": "https://registry.npmjs.org",
     "access": "public"
   },
+  "homepage": "https://github.com/LittleZhaoLearnsFromTheFront/labmai-business-fe-frame",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/LittleZhaoLearnsFromTheFront/labmai-business-fe-frame.git"
+  },
   "bin": {
     "create-react-crv": "index.js",
     "crv": "index.js"
