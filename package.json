@@ -2,7 +2,7 @@
   "name": "create-react-crv",
   "private": false,
   "version": "0.1.0",
-  "description": "这是一个labmai使用的脚手架",
+  "description": "这是一个关于 react 的脚手架工具",
   "main": "index.js",
   "type": "module",
   "publishConfig": {
