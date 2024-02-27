@@ -7,7 +7,8 @@ import {
     green,
     yellow,
     magenta,
-    lightBlue
+    lightBlue,
+    lightGreen
 } from 'kolorist'
 import { fileURLToPath } from 'node:url'
 
@@ -33,7 +34,13 @@ const FRAMEWORKS = [
         title: 'React-Labmai',
         template: 'react-labmai',
         color: lightBlue
-    }
+    },
+    {
+        name: 'react-promotion',
+        title: 'React-Promotion',
+        template: 'react-promotion',
+        color: lightGreen
+    },
 ]
 
 const defaultProjectDir = 'labmai-vite-project'
@@ -48,6 +55,12 @@ const getScripts = (packageName: string): { [key: string]: string } => {
         'push:erguotou': `rsync -az --delete --rsync-path='sudo rsync' dist $USER@erguotou:/labmai.service/data/${packageName}/`,
         "push:business": `rsync -az --delete --rsync-path='sudo rsync' dist $USER@erguotou:/labmai.business/service/data/${packageName}/`,
 
+    }
+}
+
+const getConfigJSON = (projectName: string): { [key: string]: string } => {
+    return {
+        "VITE_PROMOTION_VERSION": projectName
     }
 }
 
@@ -130,7 +143,10 @@ const init = async () => {
         console.log(`\nScaffolding project in ${root}...`)
 
         const templateDir = path.resolve(fileURLToPath(import.meta.url), `../../template-${template}`)
-        write(templateDir, root, { packageName: packageName ?? projectName ?? argvProjectDir })
+        write(templateDir, root, {
+            packageName: packageName ?? projectName ?? argvProjectDir,
+            projectName: projectName
+        })
 
         const cdProjectName = path.relative(cwd, root)
         console.log(`\nDone. Now run:\n`)
@@ -213,24 +229,42 @@ const getPkgFile = (file: string, packageName: string) => {
     return JSON.stringify(pkg)
 }
 
-const write = (templateDir: string, root: string, { packageName }: { packageName: string }) => {
+const getConfigFile = (file: string, projectName: string) => {
+    const config = JSON.parse(fs.readFileSync(file, 'utf-8'))
+    const configJSON = getConfigJSON(projectName)
+    Object.keys(configJSON).forEach(key => {
+        if (Reflect.has(config, key)) {
+            config[key] = configJSON[key]
+        }
+    })
+    return JSON.stringify(config)
+}
+
+const write = (templateDir: string, root: string, { packageName, projectName }: { packageName: string, projectName: string }) => {
     const templateFiles = fs.readdirSync(templateDir)
 
     templateFiles.forEach(file => {
         const newFile = renameFiles[file] ?? file
         const originPath = path.resolve(templateDir, `./${file}`)
         const targetPath = path.resolve(root, `./${newFile}`)
+
         if (newFile === 'package.json') {
             const content = getPkgFile(originPath, packageName)
 
             fs.writeFileSync(targetPath, content)
             return
         }
+        if (newFile === 'config.json') {
+            const content = getConfigFile(originPath, projectName)
 
+            fs.writeFileSync(targetPath, content)
+            return
+        }
         const fileState = fs.statSync(path.resolve(templateDir, `./${file}`))
+
         if (fileState.isDirectory()) {
             fs.mkdirSync(targetPath)
-            write(originPath, targetPath, { packageName })
+            write(originPath, targetPath, { packageName, projectName })
         } else {
             fs.copyFileSync(originPath, targetPath)
         }
