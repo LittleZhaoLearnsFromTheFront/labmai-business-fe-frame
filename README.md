@@ -7,3 +7,5 @@
     React-Ts 脚手架
 - v0.1.0
     新增React-Labmai React脚手架选项
+- v0.2.0
+    新增react-promotion活动项目模版
