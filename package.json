@@ -1,0 +1,43 @@
+{
+  "name": "create-react-crv",
+  "private": false,
+  "version": "0.0.0",
+  "description": "这是一个labmai使用的脚手架",
+  "main": "index.js",
+  "type": "module",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "bin": {
+    "create-react-crv": "index.js",
+    "crv": "index.js"
+  },
+  "scripts": {
+    "build": "unbuild",
+    "start": "./index.js",
+    "prestart": "unbuild",
+    "pub": "./scripts/publish.sh"
+  },
+  "files": [
+    "index.js",
+    "template-*",
+    "dist"
+  ],
+  "keywords": [
+    "vite",
+    "react"
+  ],
+  "author": "zhaohx0409@163.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/minimist": "^1.2.5",
+    "@types/prompts": "^2.4.9",
+    "kolorist": "^1.8.0",
+    "unbuild": "^2.0.0"
+  },
+  "dependencies": {
+    "minimist": "^1.2.8",
+    "prompts": "^2.4.2"
+  }
+}

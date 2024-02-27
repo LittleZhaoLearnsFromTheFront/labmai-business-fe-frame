@@ -1,0 +1,48 @@
+{
+  "name": "vite-react-typescript-starter",
+  "private": false,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "fix:openapi": "./scripts/fix-openapi.sh",
+    "push:erguotou": "rsync -az --delete --rsync-path='sudo rsync' dist $USER@erguotou:/labmai.service/data/labmai-business-svip-skin/",
+    "push:business": "rsync -az --delete --rsync-path='sudo rsync' dist $USER@erguotou:/labmai.business/service/data/labmai-business-svip-skin/",
+    "release": "./scripts/release.sh",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "antd": "^5.x",
+    "@labmai.dev/labmai-element": "1.x",
+    "ahooks": "^3.x"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.3",
+    "lint-staged": "^12.4.3",
+    "prettier": "^2.6.2"
+  }
+}

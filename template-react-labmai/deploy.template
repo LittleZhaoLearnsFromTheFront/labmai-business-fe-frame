@@ -1,0 +1,32 @@
+#!/bin/bash
+
+myusername=$(whoami)
+if [ 'root' != $myusername ]; then
+    echo '该脚本需要root权限执行'
+    exit
+fi
+
+read -p '请输入希望拉取的具名版本名称，留空表示拉取最新版: ' version
+if [ "-${version}-" == "--" ]; then
+    version="dist"
+fi
+
+credentialsFile="/home/genee/.git-credentials"
+if [ -f $credentialsFile ]; then
+    myusername=$(head -n 1 $credentialsFile | awk -F[:@\/] '{print $4}')
+    mypassword=$(head -n 1 $credentialsFile | awk -F[:@\/] '{print $5}')
+    myusername=$(echo $myusername | sed 's/%40/@/g')
+    mypassword=$(echo $mypassword | sed 's/%40/@/g')
+else
+    read -p '请输入您的bitbucket用户名: ' myusername
+    read -s -p '请输入密码: ' mypassword
+fi
+
+curl -f -O -L -X GET -u ${myusername}:${mypassword} https://api.bitbucket.org/2.0/repositories/genee/LABMAIREPONAME/downloads/${version}.tgz
+if [ $? -eq 0 -a -f ${version}.tgz ]; then
+    if [ -d dist ]; then
+        mysuffix=$(date "+%Y-%m-%d-%H-%M-%S")
+        mv dist dist.${mysuffix}
+    fi
+    tar -zxf ${version}.tgz && rm ${version}.tgz
+fi
