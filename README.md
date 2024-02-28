@@ -23,3 +23,5 @@
     由于活动模版文件太大, 所以删除部分图片缩小文件大小
 - v0.2.2
     增加README 模版内容描述
+- v0.2.3
+    修复react-promotion中vite-env.d.ts不生效问题
