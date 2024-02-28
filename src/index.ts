@@ -138,7 +138,7 @@ const init = async () => {
 
 
         const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent ?? "")
-        const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
+        const pkgManager = pkgInfo ? pkgInfo.name ?? 'npm' : 'npm'
 
         console.log(`\nScaffolding project in ${root}...`)
 
