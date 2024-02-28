@@ -3,6 +3,16 @@
     然后在控制台使用 create react crv 或 crv 命令创建项目
     也可以 create react crv <项目名称> --temolate=react-ts | react | react-labmai
 
+# 模版
+    - react
+        通用型vite + react + js模版
+    - react-ts
+        通用型vite + react + ts模版
+    - react-labmai
+        特定labmai项目模版
+    - react-promotion
+        特定labmai活动项目模版
+
 - v0.0.0
     React-Ts 脚手架
 - v0.1.0
