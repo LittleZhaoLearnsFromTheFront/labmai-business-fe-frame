@@ -9,6 +9,7 @@
     ],
     "module": "ESNext",
     "skipLibCheck": true,
+    "importHelpers": true,
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -28,7 +29,7 @@
     }
   },
   "include": [
-    "src"
+    "./src/*"
   ],
   "references": [
     {
