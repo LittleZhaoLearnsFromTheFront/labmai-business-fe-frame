@@ -9,3 +9,5 @@
     新增React-Labmai React脚手架选项
 - v0.2.0
     新增react-promotion活动项目模版
+- v0.2.1
+    由于活动模版文件太大, 所以删除部分图片缩小文件大小
