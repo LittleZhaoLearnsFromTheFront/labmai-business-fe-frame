@@ -6,6 +6,11 @@ runBuild(){
     sed -i '' 's/\/LABMAI_BUSINESS_CLOUD_BEAN_FE_ROOT_PATH/LABMAI_BUSINESS_CLOUD_BEAN_FE_ROOT_PATH/g' dist/$1-$2/index.html
 }
 
+if [ "-$VERSION_NAME-" == '--' ];then
+    echo "\\033[1;31m\\t ERROR: 没有版本信息 \\033[0m"
+    exit
+fi
+
 tsc
 files_data=$(ls -F -R src/pages/nodes)
 echo $files_data
