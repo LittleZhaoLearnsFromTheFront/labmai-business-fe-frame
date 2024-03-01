@@ -226,7 +226,7 @@ const getPkgFile = (file: string, packageName: string) => {
             pkg.scripts[key] = scripts[key]
         }
     })
-    return JSON.stringify(pkg)
+    return JSON.stringify(pkg, null, 2)
 }
 
 const getConfigFile = (file: string, projectName: string) => {
@@ -237,7 +237,7 @@ const getConfigFile = (file: string, projectName: string) => {
             config[key] = configJSON[key]
         }
     })
-    return JSON.stringify(config)
+    return JSON.stringify(config, null, 2)
 }
 
 const write = (templateDir: string, root: string, { packageName, projectName }: { packageName: string, projectName: string }) => {
