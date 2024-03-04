@@ -27,3 +27,5 @@
     修复react-promotion中vite-env.d.ts不生效问题
 - v0.2.4
     活动模版增加图片的类型声明，美化生成模版的config.json和package.json
+- v0.2.5
+    labmai模版增加mock功能
