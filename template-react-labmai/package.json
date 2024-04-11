@@ -7,8 +7,6 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "fix:openapi": "./scripts/fix-openapi.sh",
-    "push:erguotou": "rsync -az --delete --rsync-path='sudo rsync' dist $USER@erguotou:/labmai.service/data/labmai-business-svip-skin/",
-    "push:business": "rsync -az --delete --rsync-path='sudo rsync' dist $USER@erguotou:/labmai.business/service/data/labmai-business-svip-skin/",
     "release": "./scripts/release.sh",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -29,6 +27,7 @@
     "react-dom": "^18.2.0",
     "antd": "^5.x",
     "@labmai.dev/labmai-element": "1.x",
+    "@@labmai.dev/labmai-model": "1.x",
     "ahooks": "^3.x"
   },
   "devDependencies": {
